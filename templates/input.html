@@ -1,0 +1,62 @@
+{% extends "calorie.html" %}
+
+{% block body %}
+<style>
+h1.text-center {
+    text-align: center;
+}
+.content {
+	margin-left: 220px; /* Adjust this value to match the width of the sidebar */
+	padding: 20px;
+}
+.content {
+	flex: 1;
+	padding: 20px;
+}	
+.button-style {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 5px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.button-style:hover {
+    background-color: #0056b3;
+    cursor: pointer;
+}
+
+</style>
+
+<div class="container">
+	<br><br>
+	<h1 class= "text-center">
+		MegaFit Tracker
+	</h1>
+</div>
+
+<div class="sidebar">
+	<h3>Navigation</h3>
+	<ul>
+		<li><a href="/calorie">Tracker Home</a></li>
+		<li><a href="input">Data Input</a></li>
+		<li><a href="calculator">Calculator</a></li>
+		<li><a href="metrics">Metrics</a></li>
+	</ul>
+</div>
+<div class="input">
+	<!-- Adding Data input content-->
+	<div class="jumbo">
+		<h3>This is the Data Input page
+			<p>User: {{ name }} has entered all required data</p>
+			<a href="/update" class="button-style">Update User Data</a>
+		</h3>
+	</div>
+</div>
+
+{% endblock %}

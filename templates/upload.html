@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+    video, canvas {
+        max-width: 100%;
+        height: auto;
+    }
+    .content-wrapper {
+        justify-content: center;
+        text-align: center;
+        margin-top: 100px;
+    }
+</style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+
+<div class="content-wrapper">
+    <h1>Edit Your Media</h1>
+    <p>Select a video or image file you would like to breakdown.</p>
+    <form action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="mediaFile">Media file:</label>
+            <input type="file" id="mediaFile" name="media" accept="video/*, image/*" required onchange="previewMedia()">
+            <div id="mediaPreview" style="position: relative;"></div>
+        </div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+</div>
+
+
+
+<script>
+    let canvas, ctx, drawing = false, prevX = 0, prevY = 0;
+
+    function previewMedia() {
+        const file = document.getElementById('mediaFile').files[0];
+        const preview = document.getElementById('mediaPreview');
+        preview.innerHTML = ''; // Clear the preview
+
+        const fileURL = URL.createObjectURL(file);
+
+        if (file.type.startsWith('video/')) {
+            const videoElement = document.createElement('video');
+            videoElement.controls = true;
+            videoElement.src = fileURL;
+            preview.appendChild(videoElement);
+
+            videoElement.addEventListener('pause', () => {
+                if (!canvas) {
+                    canvas = document.createElement('canvas');
+                    canvas.width = videoElement.videoWidth;
+                    canvas.height = videoElement.videoHeight;
+                    ctx = canvas.getContext('2d');
+                    preview.appendChild(canvas);
+                }
+                ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+                initDrawing();
+            });
+
+        } else if (file.type.startsWith('image/')) {
+            if (!canvas) {
+                canvas = document.createElement('canvas');
+                preview.appendChild(canvas);
+            }
+            drawImageOnCanvas(fileURL);
+        } else {
+            preview.innerText = 'Please select an image or video file.';
+        }
+    }
+
+    function drawImageOnCanvas(imageURL) {
+        const img = new Image();
+        img.onload = () => {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            initDrawing();
+        };
+        img.src = imageURL;
+    }
+
+    function initDrawing() {
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseleave', stopDrawing);
+    }
+
+    function startDrawing(e) {
+        drawing = true;
+        [prevX, prevY] = [e.offsetX, e.offsetY];
+    }
+
+    function draw(e) {
+        if (!drawing) return;
+        const currX = e.offsetX;
+        const currY = e.offsetY;
+        drawLine(prevX, prevY, currX, currY);
+        [prevX, prevY] = [currX, currY];
+    }
+
+    function stopDrawing() {
+        drawing = false;
+    }
+
+    function drawLine(x1, y1, x2, y2) {
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 5;
+        ctx.stroke();
+        ctx.closePath();
+    }
+</script>
+{% endblock %}

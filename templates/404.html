@@ -1,0 +1,33 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MegaFit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  </head>
+  <body>
+
+  <header>
+    <div class="container-404">
+      <h1 class="error-picture-header"><img src="{{url_for('static', filename='img/banner-logo-megafit.png') }}" alt="MegaFit Logo"></h1>
+      <nav>  <!--This is for the profile picture nav bar to make it clickable-->
+        <a class="error-picture">
+          <img src="{{ url_for('static', filename='img/error404.jpg') }}" alt="Error 404 Picture">
+        </a>
+
+    <div class = "error-message"> 
+      <h2><a href="{{ url_for('home') }}">Return to MegaFit Home Page</a></h2>
+    </div>
+
+      </nav>
+    </div>
+  </header>
+
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+  </body>
+</html>

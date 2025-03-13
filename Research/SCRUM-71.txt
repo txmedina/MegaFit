@@ -1,0 +1,8 @@
+Calorie/Workout Tracker and APIs
+
+I am researching how to implement HTML for the front end of the Calorie/Workout Tracker feature. I am also researching APIS that might give us some help and/or functionality for this feature. This will be done by implementing the front end code in html and the backend code in python. 
+
+I expect to be able to learn how to create the page and features in html and how to connnect it to the backend code and API functionality. 
+
+The Jira tasks that represent the work that is dependent on this research/training are Research how to implement SCRUM-71: Workout/Calorie tracker and calculator and apis the may make it easier and SCRUM-82: Design workout/calorie tracker and calculator.
+

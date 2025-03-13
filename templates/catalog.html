@@ -1,0 +1,195 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<style>
+nav ul li img {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+}
+
+.center-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+  height: 600px;
+}
+
+.exercises-list, .exercises-img {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+  grid-auto-rows: minmax(100px, auto); /* Adjust minimum row height as needed */
+  gap: 20px; /* Space between items */
+  margin-top: 20px; /* Space above the grid */
+}
+
+nav ul li a {
+  color: #9025e8;
+}
+
+.team_list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  padding: 0;
+  list-style: none;
+  margin-left: 0;
+}
+/* Style for the search bar */
+.search-container {
+  margin-bottom: 20px;
+  width: 165%;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.search-input {
+  padding: 10px;
+  width: 50%;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  background: #f1f1f1;
+}
+
+.search-button {
+  float: left;
+  width: 5%; /* Adjust the width as needed */
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevents double borders between input and button */
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background: #0b7dda;
+}
+
+.favorite-icon {
+  cursor: pointer;
+  width: 40px; /* Or whatever size fits your design */
+  height: 40px;
+}
+
+.exercise-video {
+  margin-top: 10px;
+}
+
+.submit-button {
+  width: 20%; /* Adjust the width as needed */
+  padding: 15px 20px; /* Larger padding for bigger button */
+  font-size: 20px; /* Larger font size */
+  background-color: #2196F3; /* Background color */
+  color: white; /* Text color */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor on hover */
+  display: block; /* Block level element */
+  margin: 20px auto; /* Center the button with auto margins */
+}
+
+.submit-button:hover {
+  background-color: #0b7dda; /* Darker shade on hover */
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.exercises-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+    grid-auto-rows: minmax(100px, auto); /* Adjust minimum row height as needed */
+    gap: 20px; /* Space between items */
+    margin-top: 20px; /* Space above the grid */
+    justify-items: center; /* Center items horizontally */
+  }
+
+  .exercise-item {
+    text-align: center;
+  }
+
+  .exercise-name {
+    cursor: pointer;
+    display: block;
+    margin-top: 10px;
+    color: #2196F3;
+  }
+
+  .exercise-description {
+    display: none;
+    margin-top: 5px;
+  }
+
+</style>
+<h2>Workout Catalog for MegaFit</h2>
+<img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="center-image">
+<br>
+
+<div class="search-container">
+  <form action="/catalog" method="GET">
+    <input type="text" class="search-input" placeholder="Search.." name="search">
+    <button type="submit" class="search-button">Search</button>
+  </form>
+</div>
+
+<br>
+<form action="{{ url_for('catalog.add_favorite') }}" method="post">
+  <input type="submit" value="Save Favorites" class="submit-button">
+  
+  {% for member in team_info %}
+  <h3>{{ member.name }} - {{member.description}} </h3>
+  <div class="exercises-grid">
+    {% for exercise in member.exercises %}
+    <div class="exercise-item">
+      {% if not exercise.get('favorited', False) %}
+        <img src="{{ url_for('static', filename='img/nonfavorite.png') }}" class="favorite-icon">
+      {% endif %}
+      {% if exercise.get('favorited', True) %}
+        <img src="{{ url_for('static', filename='img/favorite.png') }}" class="favorite-icon">
+      {% endif %}
+    
+      <input 
+        type="checkbox" 
+        name="favorite_workouts" 
+        value="{{ exercise['name'] }}" 
+        {% if exercise.get('favorited', False) %} checked {% endif %}
+      > 
+      <span class="exercise-name" onclick="toggleDescription(this)">{{ exercise['name'] }}</span>
+      <div class="exercise-description">
+        <p>{{ exercise['description'] }}</p>
+        <div class="exercise-video" style="display: none;">
+          <iframe width="560" height="315" src="{{ exercise['video_url'] }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+{% endfor %}
+  </div>
+{% endfor %}
+
+
+</form>
+
+
+<script>
+function toggleDescription(element) {
+  var description = element.nextElementSibling;
+  var video = description.querySelector('.exercise-video');
+  
+  if (description.style.display === 'block') {
+    description.style.display = 'none';
+    video.style.display = 'none';
+  } else {
+    description.style.display = 'block';
+    video.style.display = 'block';
+  }
+}
+</script>
+
+{% endblock %}

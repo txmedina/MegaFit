@@ -1,0 +1,9 @@
+Implementation of APIs 
+
+I am conducting this research to learn how to implement any API within a program and use its available resources to produce desired output.
+
+I expect to learn where to specifically find various APIs to test and implement within my existing code. It is likely that I will be configuring the routes and some html within my program.
+
+I expect to identify the correct import module for the desired API and be able to program within the locator_route and the routes files in the program.
+
+The Jira task that represent the work that is dependent on this research/training is SCRUM-66: Implementation: Create API for Gym Locator

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MegaFit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+
+<header>
+    <section id="header" class="wrapper">
+
+        
+    
+        <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    <li class="current"><a href="/">Home</a></li>
+                    <li><a href="/locator">Gym Locator</a></li>
+                    <li><a href="/catalog">Workout Catalog</a></li>
+                    <li><a href="/calorie">Tracker</a></li>
+                    <li><a href="/login">Profile</a></li>
+                    <li><a href="/upload">Upload video</a></li>
+                </ul>
+            </nav>
+    
+    </section>
+
+    
+
+
+
+</header>
+
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<section id="footer" class="wrapper">
+					
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-12-medium">
+
+                <!-- Contact Form -->
+                    <section>
+                        <div class="footer-image">
+                            <img src="/static/img/footerLogo.png" alt="MegaFit" />
+                        </div>
+                    </section>
+
+            </div>
+            <div class="col-6 col-12-medium">
+
+                <!-- Contact -->
+                    <section class="feature-list small">
+                        <div class="row">
+                            <div class="col-6 col-12-small">
+                                <section>
+                                    <h3 class="icon solid fa-link">Helpful Links</h3>
+                                    <p>
+                                        <a href="catalog">Workout Catalog</a><br />
+                                        <a href="locator">Gym Locator</a><br />
+                                        <a href="calorie">Tracker</a><br />
+                                        <a href="login">Profile</a>
+                                    </p>
+                                    
+                                </section>
+                            </div>
+                            <div class="col-6 col-12-small">
+                                <section>
+                                    <h3 class="icon solid fa-envelope">Developers</h3>
+                                    <p>
+                                        <a href="#">Ben Cogdell</a><br />
+                                        <a href="#">Michael Canales</a><br />
+                                        <a href="#">Tommy Medina-Herrera</a><br />
+                                        <a href="#">Braden Schlueter</a><br />
+                                        <a href="#">Samuel Wait</a>
+                                    </p>
+                                </section>
+                            </div>
+                        
+
+                        </div>
+                    </section>
+
+            </div>
+        </div>
+        <div id="copyright">
+            <ul>
+                <li>&copy; Copyright 2024.</li><li>Design: <a href="https://www.linkedin.com/in/bradenjschlueter/">Braden S.</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="bottom-right-chatbot" class="bottom-right-chatbot-class">
+    <div class="chat-box">
+        <div class="chat-box-header">
+            <a href="ai_bot">
+                <h3>Message Us</h3>
+                <p>
+                    <i class="fa fa-times"></i>
+                </p>
+        </div>
+    </div>
+
+    <div class="chat-button">
+        <span></span>
+    </div>
+
+
+  </section>
+
+
+</body>
+</html>

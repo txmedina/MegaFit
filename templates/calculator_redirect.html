@@ -1,0 +1,45 @@
+{% extends "calorie.html" %}
+
+{% block body %}
+<style>
+
+.content {
+	margin-left: 220px; /* Adjust this value to match the width of the sidebar */
+	padding: 20px;
+}
+
+
+.content {
+	flex: 1;
+	padding: 20px;
+}
+	
+</style>
+
+<div class="container">
+	<br><br>
+	<h1 class= "text-center">
+		MegaFit Tracker
+	</h1>
+</div>
+
+<div class="sidebar">
+	<h3>Navigation</h3>
+	<ul>
+		<li><a href="/calorie">Tracker Home</a></li>
+		<li><a href="input">Data Input</a></li>
+		<li><a href="calculator">Calculator</a></li>
+		<li><a href="metrics">Metrics</a></li>
+	</ul>
+</div>
+<body>
+	<div class="jumbo">
+		<h3>This is the Calculator page
+			<p>This is where the user can use the Fitness Calculator </p>
+			<p>Go to the Input page and enter your age and height to use the Calculator</p>
+			<p><a href="input">Input</a><br /></p>
+		</h3>
+	</div>
+</body>
+
+{% endblock %}

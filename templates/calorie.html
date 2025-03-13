@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<style>
+
+.sidebar {
+    position:absolute;
+    top: 21%;
+    left: 0.5%;
+    width: 190px;
+	margin-bottom: 200px;
+    background-color: #333;
+    padding-top: 20px;
+	border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border-top-left-radius: 10px;
+	max-height: calc(100vh - 21% - 50px);
+}
+
+h1.text-center {
+    text-align: center;
+}
+
+.content {
+    margin-left: 220px; /* Adjust this value to match the width of the sidebar */
+    padding: 20px;
+}
+
+.sidebar h3 {
+    color: #fff;
+    text-align:center;
+}
+
+.sidebar ul {
+    list-style-type:none;
+    padding: 0;
+	text-align: center;
+}
+
+.sidebar ul li {
+    padding: 10px;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+</style>
+
+<div class="sidebar" id="sidebar">
+	<h3>Navigation</h3>
+	<ul>
+		<!--<li class="current"><a href="/calorie">Tracker Home</a></li>-->
+		<li><a href="/calorie">Tracker Home</a></li>
+		<li><a href="calorie/input">Data Input</a></li>
+		<li><a href="calorie/calculator">Calculator</a></li>
+		<li><a href="calorie/metrics">Metrics</a></li>
+	</ul>
+</div>
+
+{% block body %}
+<body>
+	<div class="container">
+		<br><br>
+		<h1 class= "text-center">
+			MegaFit Tracker
+		</h1>
+		<div class="tracker_home">
+			<div class="jumbo">
+				<h3>This is the Tracker Page
+					<p>The Tracker wants to track your progress to help you meet your fitness goals</p>
+					<p>Select a feature on the Navigation bar to the left to get started </p>
+				</h3>
+			</div>
+		</div>
+	</div>
+
+</body>
+{% endblock %}
+	
+{% endblock %}

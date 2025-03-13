@@ -1,0 +1,13 @@
+HTML/Python Routes
+
+I am researching how routes work with HTML and Python to connect the different pages of our website/application together with the home.
+This will be done by getting the navigation bar to work with the routes.
+
+I expect to learn how to connect the different forms for the features with their respective routes and how the templates are rendered
+the HTML and reder_template function in Python. 
+
+I expect to be able to connect the features together on teh app with the routes and the navigation bar, so that when the user clicks
+on the tab in the navigation bar, the proper route is selected and the proper page is loaded using the HTML and render_template function.
+
+The Jira tasks that represent the work that is dependent on this research/training are SCRUM-60: Integrate routes for each navigation bar element
+and SCRUM-28: Implement Navigation Logic.

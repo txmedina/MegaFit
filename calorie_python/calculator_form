@@ -1,0 +1,15 @@
+import sys 
+sys.dont_write_bytecode = True
+from flask_wtf import FlaskForm
+from wtforms import TextAreaField, SubmitField, validators
+from wtforms.validators import DataRequired
+
+class catalogForm(FlaskForm):
+	age = TextAreaField('Enter Age',  validators=[DataRequired()])
+	weight = TextAreaField('Enter Weight', validators=[DataRequired()])
+	height = TextAreaField('Enter Height', validators=[DataRequired()])
+	BMI = SubmitField('Calculate BMI') 
+	activity_min = TextAreaField('Enter number of minutes exercise', validators=[DataRequired()])
+	excercise_lvl = TextAreaField('Enter exercise level', validators=[DataRequired()])
+	
+    

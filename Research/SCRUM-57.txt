@@ -1,0 +1,9 @@
+MongoDB research
+
+I am researching the database MongoDB so that I can implement a database for the MegaFit app.
+
+I expect to learn how to add MongoDB to the login page backend logic so that we can have users make profiles.
+
+Eventually, I expect to learn how to store other information such as personalized workouts as well.
+
+The Jira tasks that are dependent on this research currently is SCRUM-53: Set up MongoDB.

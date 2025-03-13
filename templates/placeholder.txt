@@ -1,0 +1,134 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<style>
+nav ul li img {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+}
+
+p{
+  font-size: 30px;
+}
+
+.center-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+  height: 600px;
+}
+
+.exercises-list, .exercises-img {
+  display: none;
+  margin-top: 40px;
+}
+
+nav ul li a {
+  color: #9025e8;
+}
+
+.team_list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  padding: 0;
+  list-style: none;
+  margin-left: 0;
+}
+/* Style for the search bar */
+.search-container {
+  margin-bottom: 20px;
+  width: 165%;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.search-input {
+  padding: 10px;
+  width: 50%;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  background: #f1f1f1;
+}
+
+.search-button {
+  float: left;
+  width: 5%; /* Adjust the width as needed */
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevents double borders between input and button */
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background: #0b7dda;
+}
+
+.favorite-icon {
+  cursor: pointer;
+  width: 40px; /* Or whatever size fits your design */
+  height: 40px;
+}
+
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+</style>
+
+<h2>Workout Catalog for MegaFit</h2>
+<img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="center-image">
+<br>
+
+<div class="search-container">
+  <form action="/catalog" method="GET">
+    <input type="text" class="search-input" placeholder="Search.." name="search">
+    <button type="submit" class="search-button">Search</button>
+  </form>
+</div>
+
+<br>
+
+<nav>
+  <ul class="team_list">
+    {% for member in team_info %} 
+    <li style="margin-bottom: 20px;">
+      <a href="#" onclick="toggle('image-{{ loop.index }}', 'exercises-{{ loop.index }}'); return false">
+        <p>{{ member.name }}
+      </a>
+      - {{member.description}}</p>
+      <img id="image-{{ loop.index }}" class="exercises-img" src="{{ url_for('static', filename='img/' + member['image']) }}" alt="{{ member.name }}" style="display:none;">
+      <div id="exercises-{{ loop.index }}" class="exercises-list" style="display:none;">
+        <ul>
+          {% for exercise in member.exercises %}
+          <li>
+            <p>{{ exercise['name'] }}
+              <img src="{{ url_for('static', filename='img/nonfavorite.png') }}" 
+              data-favorite-src="{{ url_for('static', filename='img/favorite.png') }}"
+              data-nonfavorite-src="{{ url_for('static', filename='img/nonfavorite.png') }}"
+              alt="Favorite" 
+              onclick="toggleFavorite(this, '{{ exercise['name'] }}');" 
+              class="favorite-icon" {{ 'style=visibility: visible;' if exercise['favorited'] else '' }}>
+            </p>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</nav>
+
+<script src="static\js\catalog.js"></script>
+
+{% endblock %}

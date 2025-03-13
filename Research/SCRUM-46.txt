@@ -1,0 +1,5 @@
+Python and HTML research
+I have no prior experience with either Python or HTML and this is severely limiting my ability to not only format my flask page but also include the information that I want.
+ I expect to learn how to pass the information I want from my .py file to my html file and format my HTML to not be horrendous.
+ I will use this on my workout catalog feature where I need to include links and images that pose many formatting and logistical issues. 
+Scrum 47 Develop the front end with flask

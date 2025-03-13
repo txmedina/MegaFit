@@ -1,0 +1,165 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<style>
+
+h1.text-center{
+	text-align:center;
+}
+.content {
+	margin-left: 220px; /* Adjust this value to match the width of the sidebar */
+	padding: 20px;
+}
+.form{
+	text-align: center;
+}
+.form-row{
+	display: flex;
+	justify-content: center;
+	margin-bottom: 10px;
+	gap: 10px;
+}
+.container{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+.submit-button{
+	display: block;
+	width: 200px; /* Width of the button */
+	padding: 10px 15px;
+	margin: 20px auto; /* Centers the button */
+	background-color: #007bff; /* Bootstrap primary color */
+	color: white;
+	text-align: center;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	font-size: 1.1em;
+}
+form input#weight {
+	width: 400px;
+	display: inline-block;
+	background-color: #fafafa;
+	-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+			border-radius: 3px;
+	border: 1px solid #cccccc;
+	padding: 5px;
+	font-size: 1.1em;
+}
+form input#heightFt {
+	width: 190px;
+	display: inline-block;
+	background-color: #fafafa;
+	-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+			border-radius: 3px;
+	border: 1px solid #cccccc;
+	padding: 5px;
+	font-size: 1.1em;
+}
+form input#heightIn {
+	width: 190px;
+	display: inline-block;
+	background-color: #fafafa;
+	-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+			border-radius: 3px;
+	border: 1px solid #cccccc;
+	padding: 5px;
+	font-size: 1.1em;
+}
+form input#age {
+	width: 400px;
+	display: inline-block;
+	background-color: #fafafa;
+	-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+			border-radius: 3px;
+	border: 1px solid #cccccc;
+	padding: 5px;
+	font-size: 1.1em;
+}
+.content {
+	width: 100%;
+	max-width: 600px;
+	flex: 1;
+	padding: 20px;
+	margin: auto;
+}
+</style>
+	
+	{% if error %}
+	<div class="flash">{{ error }}</div>
+	{% endif %}
+	
+	<div class="container">
+		<br><br>
+		<h1 class= "text-center">
+			MegaFit Tracker
+		</h1>
+	</div>
+
+	<div class="input">
+		<!-- Adding Data input content-->
+		<div class="jumbo">
+			<h3>Enter new data below
+				<form method="POST" action="{{ url_for('update_input') }}">
+					{{ form.hidden_tag() }}
+					<div class="form-group">
+						{{ form.age.label }}
+						{{ form.age(class="form-control", placeholder="Enter your Age") }}
+						{% for error in form.age.errors %}
+						<div class="flash">{{ error }}</div>
+						{% endfor %}
+					</div>
+					<div class="form-label-center">
+						<label for="height">Height</label>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							{{ form.heightFt.label(class="visually-hidden") }}
+							{{ form.heightFt(class="form-control", placeholder="Feet") }}
+							{% for error in form.heightFt.errors %}
+							<div class="flash">{{ error }}</div>
+							{% endfor %}
+						</div>
+						<div class="form-group">
+							{{ form.heightIn.label(class="visually-hidden") }}
+							{{ form.heightIn(class="form-control", placeholder="Inches") }}
+							{% for error in form.heightIn.errors %}
+							<div class="flash">{{ error }}</div>
+							{% endfor %}
+						</div>
+					</div>
+					<div class="form-group">
+						{{ form.weight.label }}
+						{{ form.weight(class="form-control", placeholder="Enter your weight in lbs") }}
+						{% for error in form.weight.errors %}
+						<div class="flash">{{ error }}</div>
+						{% endfor %}
+					</div>
+					
+					<div class="form-group">
+						{{ form.submit(class="btn btn-primary submit-button") }}
+					</div>
+				</form>
+			</h3>
+		</div>
+	</div>
+	
+	{% endblock %}
